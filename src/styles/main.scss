@@ -1,0 +1,432 @@
+@use './abstracts' as *;
+
+.skip-to-content {
+  position: absolute;
+  z-index: 99999999;
+  inset: -100vh auto auto 0;
+  display: grid;
+  place-items: center;
+  padding: 1em;
+  background-color: white;
+  border: 1em double black;
+
+  &:focus{
+    inset: 0 auto auto 0;
+  }
+}
+
+html {
+  scroll-padding-top: 12vh;
+}
+
+body {
+  background-image: url('../public/images/Simple-Shiny.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+header {
+  position: fixed;
+  min-width: 100%;
+  min-height: 4rem;
+  height: 10vh;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  z-index: 99999;
+
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  h1 {
+    margin-inline-start: 0.5em;
+    text-transform: uppercase;
+
+    @include max(small){
+      font-size: 1.5rem;
+    }
+  }
+
+  #hamburger {
+    display: none;
+    color: black;
+    background-color: transparent;
+    border: none;
+    margin-inline-start: auto;
+    margin-inline-end: 2em;
+    min-width: 44px;
+    min-height: 44px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @include max(small){
+      display: block;
+    }
+  }
+
+  nav {
+    margin-inline-start: auto;
+
+    ul {
+      display: flex;
+
+      @include max(small){
+        display: block;
+      }
+    }
+
+    a {
+      display: block;
+      padding: 1em 2em;
+      transition: all 100ms ease-out;
+      text-transform: capitalize;
+      font-weight: bold;
+
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+
+      @include max(small){
+        margin-block-start: 3rem;
+        padding: 3em;
+      }
+    }
+
+    &.open{
+      @include max(small){
+        transform: translateX(0);
+      }
+    }
+
+    @include max(small){
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 75vw;
+      height: 100vh;
+
+      background-color: white;
+
+      transform: translateX(-100vw);
+      transition: transform 0.3s ease;
+    }
+  }
+
+  @include min(large) {
+    padding-inline: 8%;
+  }
+}
+
+main {
+  padding-block-start: 10vh;
+  min-height: 100vh;
+  
+  .hero {
+    min-height: 60vh;
+    background-color: gray;
+    background-image: url('../public/images/hero-image.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    margin-inline: auto;
+    border-radius: 0 0 .7em .7em;
+
+    @include min(large){
+      max-width: 1000px;
+    }
+  }
+
+  .explore__title {
+    font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
+    padding-block: 1em;
+    margin-block: 1em;
+
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .restaurant__list {
+    display: grid;
+    place-items: center;
+    gap: 2rem;
+    max-width: 80%;
+    margin-inline: auto;
+
+    @include min(medium){
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include min(large){
+      max-width: 80%;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .restaurant__item {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+  }
+
+  .restaurant__detail{
+    max-width: 80%;
+    margin-inline: auto;
+  }
+
+  #add-comment {
+    max-width: 80%;
+    margin-inline: auto;
+    margin-block-start: 2rem;
+  }
+
+  .card__header {
+    position: relative;
+
+    &__location {
+      position: absolute;
+      background-color: #E3D0E3;
+      padding: .5em 2em;
+      inset: 1rem auto auto 1rem;
+      font-weight: bold;
+      border-radius: 5rem;
+
+      box-shadow: 12px 11px 49px 2px rgba(0,0,0,0.64);
+      -webkit-box-shadow: 12px 11px 49px 2px rgba(0,0,0,0.64);
+      -moz-box-shadow: 12px 11px 49px 2px rgba(0,0,0,0.64);
+    }
+
+    &__image {
+      border-radius: 1rem 1rem 0 0;
+    }
+  }
+
+  .card__body {
+    padding: 1rem;
+
+    &__rating {
+      font-weight: bold;
+      margin-block-end: .8em;
+    }
+
+    &__name {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-block-end: .5em;
+      color: purple;
+
+      a:hover {
+        color: blue;
+        text-decoration: underline;
+      }
+    }
+
+    &__description {
+      font-size: .7rem;
+    }
+  }
+
+  .detail__body {
+    padding-inline: 2em;
+
+    @include min(large){
+      padding-inline: 10em;
+    }
+  }
+
+  .detail__title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-block: 1em;
+  }
+
+  .detail__desc {
+    margin-block-end: 2em;
+  }
+
+  .detail__menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75em;
+    margin-block-end: 2em;
+
+    &--name {
+      background-color: #E3D0E3;
+      border-radius: 1em;
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      padding-block: 0.5em;
+      padding-inline: 1em;
+      white-space: nowrap;
+    }
+  }
+
+  .detail__reviews {
+    margin-block-end: 2em;
+
+    &__name {
+      font-family: inherit;
+      min-width: 100%;
+      background-color: #E3D0E3;
+      border: none;
+      border-radius: .5em;
+      border-left: 10px solid #C8A2C8;
+      padding-inline: 3em;
+      margin-block-end: 0.5em;
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    }
+
+    &__add {
+      font-family: inherit;
+      min-width: 100%;
+      background-color: #E3D0E3;
+      border: none;
+      border-radius: .5em;
+      border-left: 10px solid #C8A2C8;
+      padding: 3em;
+      margin-block-end: 0.5em;
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    }
+
+    &__submit {
+      font-family: inherit;
+      background-color: #E3D0E3;
+      border: none;
+      border-radius: .5em;
+      padding: 1em;
+      font-weight: bold;
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+      transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+      transition-duration: 150ms;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+    }
+
+    &--card {
+      background-color: #E3D0E3;
+      border-radius: .5em;
+      border: 1px solid gray;
+      padding-block: 0.5em;
+      padding-inline: 1em;
+      margin-block-end: 1em;
+
+      &__date {
+        font-size: 0.75rem;
+        color:rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+
+  #add-review {
+    max-width: 80%;
+    margin-inline: auto;
+    margin-block-start: 2rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    padding: 2em;
+
+    @include min(large){
+      padding-inline: 10em;
+    }
+  }
+
+  .add-review__form {
+    margin-block-end: 2rem;
+  }
+
+  .like {
+    width: 55px;
+    height: 55px;
+    display: grid;
+    place-items: center;
+    background-color: navy;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    
+    position: fixed;
+    bottom: 2rem;
+    right: 3rem;
+    border-radius: 50%;
+    border: 0;
+    
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+
+    z-index: 9999;
+  }
+}
+
+footer {
+  text-align: center;
+  border-top: 2px solid black;
+  padding: 1em;
+  margin-block-start: 5em;
+
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+// loading
+.lds-facebook {
+  display: block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-inline: auto;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #fff;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%, 100% {
+    top: 24px;
+    height: 32px;
+  }
+}
