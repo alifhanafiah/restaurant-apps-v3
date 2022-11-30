@@ -26,20 +26,20 @@ const createRestaurantDetailTemplate = (restaurant) => `
 const createRestaurantItemTemplate = (restaurant) => `
   <div class="restaurant__item">
     <div class="card__header">
-      <div class="card__header__location">${restaurant.city}</div>
+      <div class="card__header__location">${restaurant.city || '-'}</div>
       <img
         class="card__header__image"
-        src=${CONFIG.BASE_IMAGE_URL_SMALL + restaurant.pictureId}
-        alt=""
+        src=${restaurant.pictureId ? CONFIG.BASE_IMAGE_URL_SMALL + restaurant.pictureId : 'https://picsum.photos/id/666/800/450?grayscale'}
+        alt="${restaurant.name || '-'}"
       />
     </div>
     <div class="card__body">
       <div class="card__body__rating">
-        Rating: <span id="rating">${restaurant.rating}</span>
+        Rating: <span id="rating">${restaurant.rating || '-'}</span>
       </div>
-      <div class="card__body__name"><a href="/#/detail/${restaurant.id}">${restaurant.name}</a></div>
+      <div class="card__body__name"><a href="/#/detail/${restaurant.id}">${restaurant.name || '-'}</a></div>
       <div class="card__body__description">
-        ${restaurant.description}
+        ${restaurant.description || '-'}
       </div>
     </div>
   </div>
@@ -58,13 +58,13 @@ const createCustomerReviewsTemplate = (restaurant) => `
 `;
 
 const createLikeRestaurantButtonTemplate = () => `
-  <button aria-label="like this movie" id="likeButton" class="like">
+  <button aria-label="like this restaurant" id="likeButton" class="like">
     <i class="fa-regular fa-heart" aria-hidden="true"></i>
   </button>
 `;
 
 const createUnlikeRestaurantButtonTemplate = () => `
-  <button aria-label="unlike this movie" id="likeButton" class="like">
+  <button aria-label="unlike this restaurant" id="likeButton" class="like">
     <i class="fa-solid fa-heart" aria-hidden="true"></i>
   </button>
 `;
