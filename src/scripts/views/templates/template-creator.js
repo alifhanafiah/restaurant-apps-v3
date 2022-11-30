@@ -57,13 +57,13 @@ const createCustomerReviewsTemplate = (restaurant) => `
   </div>
 `;
 
-const createLikeButtonTemplate = () => `
+const createLikeRestaurantButtonTemplate = () => `
   <button aria-label="like this movie" id="likeButton" class="like">
     <i class="fa-regular fa-heart" aria-hidden="true"></i>
   </button>
 `;
 
-const createLikedButtonTemplate = () => `
+const createUnlikeRestaurantButtonTemplate = () => `
   <button aria-label="unlike this movie" id="likeButton" class="like">
     <i class="fa-solid fa-heart" aria-hidden="true"></i>
   </button>
@@ -73,7 +73,7 @@ export {
   createRestaurantItemTemplate,
   createRestaurantDetailTemplate,
   createCustomerReviewsTemplate,
-  createLikeButtonTemplate,
-  createLikedButtonTemplate,
+  createLikeRestaurantButtonTemplate,
+  createUnlikeRestaurantButtonTemplate,
 };
 // eslint-disable-next-line no-multiple-empty-lines

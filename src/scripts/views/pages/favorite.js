@@ -1,31 +1,18 @@
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
-import { createRestaurantItemTemplate } from '../templates/template-creator';
+import FavoriteRestaurantSearchPresenter from './favorited-restaurants/favorite-restaurant-search-presenter';
+import FavoriteRestaurantSearchView from './favorited-restaurants/favorite-restaurant-search-view';
+import FavoriteRestaurantShowPresenter from './favorited-restaurants/favorite-restaurant-show-presenter';
+
+const view = new FavoriteRestaurantSearchView();
 
 const Favorite = {
   async render() {
-    return `
-      <div class="hero"></div>
-      <h2 class="explore__title">Favorited Restaurant</h2>
-      <div class="restaurant__list" id="restaurants"></div>
-      <div class="lds-facebook"><div></div><div></div><div></div></div>
-    `;
+    return view.getTemplate();
   },
 
   async afterRender() {
-    // mengambil semua restaurant pada indexdb
-    const restaurants = await FavoriteRestaurantIdb.getAllRestaurants();
-    const restaurantsContainer = document.querySelector('#restaurants');
-
-    if (restaurants.length <= 0) {
-      restaurantsContainer.innerHTML = '<p>Theres no favorited restaurant</p>';
-    } else {
-      restaurants.forEach((restaurant) => {
-        restaurantsContainer.innerHTML += createRestaurantItemTemplate(restaurant);
-      });
-    }
-
-    const loader = document.querySelector('.lds-facebook');
-    loader.style.display = 'none';
+    new FavoriteRestaurantShowPresenter({ view, favoriteRestaurants: FavoriteRestaurantIdb });
+    new FavoriteRestaurantSearchPresenter({ view, favoriteRestaurants: FavoriteRestaurantIdb });
   },
 };
 
