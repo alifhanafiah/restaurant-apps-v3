@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start-dev": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js && node sharp.js",
     "serve": "http-server dist",
     "test": "karma start",
-    "build-image": "node sharp.js",
     "e2e": "codeceptjs run --steps"
   },
   "keywords": [],
