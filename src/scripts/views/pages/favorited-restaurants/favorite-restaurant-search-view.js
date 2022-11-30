@@ -3,7 +3,12 @@ import { createRestaurantItemTemplate } from '../../templates/template-creator';
 class FavoriteRestaurantSearchView {
   getTemplate() {
     return `
-      <div class="hero"></div>
+      <div class="hero">
+        <picture>
+          <source media="(max-width: 600px)" srcset="./images/hero-image-small.webp">
+          <img src='./images/hero-image-large.webp' alt=" " class="hero">
+        </picture>
+      </div>
       <h2 class="explore__title">Favorited Restaurant</h2>
       <input id="query" type="text" class="search-query" placeholder="Put your favorite movie here...">
       <div class="restaurant__list" id="restaurants"></div>

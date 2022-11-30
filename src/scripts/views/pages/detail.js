@@ -7,7 +7,12 @@ import { createCustomerReviewsTemplate, createRestaurantDetailTemplate } from '.
 const Detail = {
   async render() {
     return `
-      <div class="hero"></div>
+      <div class="hero">
+        <picture>
+          <source media="(max-width: 600px)" srcset="./images/hero-image-small.webp">
+          <img src='./images/hero-image-large.webp' alt=" " class="hero">
+        </picture>
+      </div>
       <h2 class="explore__title">Detail of Restaurant</h2>
       <div class="restaurant__detail" id="restaurant"></div>
       <div id="add-review">

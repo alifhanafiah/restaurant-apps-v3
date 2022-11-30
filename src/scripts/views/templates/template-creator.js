@@ -28,8 +28,8 @@ const createRestaurantItemTemplate = (restaurant) => `
     <div class="card__header">
       <div class="card__header__location">${restaurant.city || '-'}</div>
       <img
-        class="card__header__image"
-        src=${restaurant.pictureId ? CONFIG.BASE_IMAGE_URL_SMALL + restaurant.pictureId : 'https://picsum.photos/id/666/800/450?grayscale'}
+        class="card__header__image lazyload"
+        data-src=${restaurant.pictureId ? CONFIG.BASE_IMAGE_URL_SMALL + restaurant.pictureId : 'https://picsum.photos/id/666/800/450?grayscale'}
         alt="${restaurant.name || '-'}"
       />
     </div>

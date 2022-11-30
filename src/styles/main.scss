@@ -20,7 +20,7 @@ html {
 }
 
 body {
-  background-image: url('../public/images/Simple-Shiny.svg');
+  background-image: url('../public/Simple-Shiny.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -131,12 +131,16 @@ main {
   .hero {
     min-height: 60vh;
     background-color: gray;
-    background-image: url('../public/images/hero-image.webp');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
     margin-inline: auto;
     border-radius: 0 0 .7em .7em;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
 
     @include min(large){
       max-width: 1000px;
@@ -195,6 +199,7 @@ main {
     -webkit-backdrop-filter: blur(13px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     overflow: hidden;
+    max-width: 100%;
   }
 
   .restaurant__detail{

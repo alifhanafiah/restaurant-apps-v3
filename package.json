@@ -7,7 +7,8 @@
     "start-dev": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "serve": "http-server dist",
-    "test": "karma start"
+    "test": "karma start",
+    "build-image": "node sharp.js"
   },
   "keywords": [],
   "author": "your_name <your.email@domain.com>",
@@ -24,6 +25,8 @@
     "eslint-plugin-import": "^2.26.0",
     "html-webpack-plugin": "^5.5.0",
     "http-server": "^14.1.1",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-webpack-plugin": "^2.4.2",
     "jasmine-ajax": "^4.0.0",
     "jasmine-core": "^4.2.0",
     "karma": "^5.2.3",
@@ -34,6 +37,7 @@
     "karma-webpack": "^5.0.0",
     "sass": "^1.55.0",
     "sass-loader": "^13.1.0",
+    "sharp": "^0.31.2",
     "style-loader": "^3.3.1",
     "sweetalert2": "^11.6.14",
     "webpack": "^5.73.0",
@@ -45,6 +49,7 @@
   },
   "dependencies": {
     "idb": "^7.1.1",
+    "lazysizes": "^5.3.2",
     "regenerator-runtime": "^0.13.9",
     "workbox-window": "^6.5.4"
   }
