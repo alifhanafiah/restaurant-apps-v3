@@ -23,6 +23,36 @@ const createRestaurantDetailTemplate = (restaurant) => `
   </div>
 `;
 
+const createSkeletonRestaurantTemplate = (count) => {
+  let template = '';
+
+  for (let i = 0; i < count; i += 1) {
+    template += `
+      <div class="restaurant__item">
+        <div class="card__header">
+          <div class="card__header__location">-</div>
+          <img
+            class="card__header__image"
+            src="https://picsum.photos/id/666/800/450?grayscale"
+            alt="-"
+            width="100%" 
+            height="350px"
+          />
+        </div>
+        <div class="card__body">
+          <div class="card__body__rating">
+            Rating: <span id="rating">-</span>
+          </div>
+          <div class="card__body__name"><a href="/#/detail">-</a></div>
+          <div class="card__body__description">-</div>
+        </div>
+      </div>
+    `;
+  }
+
+  return template;
+};
+
 const createRestaurantItemTemplate = (restaurant) => `
   <div class="restaurant__item">
     <div class="card__header">
@@ -70,8 +100,9 @@ const createUnlikeRestaurantButtonTemplate = () => `
 `;
 
 export {
-  createRestaurantItemTemplate,
   createRestaurantDetailTemplate,
+  createSkeletonRestaurantTemplate,
+  createRestaurantItemTemplate,
   createCustomerReviewsTemplate,
   createLikeRestaurantButtonTemplate,
   createUnlikeRestaurantButtonTemplate,

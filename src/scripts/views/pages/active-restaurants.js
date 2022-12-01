@@ -1,5 +1,5 @@
 import RestaurantSource from '../../data/restaurant-source';
-import { createRestaurantItemTemplate } from '../templates/template-creator';
+import { createRestaurantItemTemplate, createSkeletonRestaurantTemplate } from '../templates/template-creator';
 
 const ActiveRestaurants = {
   async render() {
@@ -11,20 +11,19 @@ const ActiveRestaurants = {
         </picture>
       </div>
       <h2 class="explore__title">Explore Restaurant</h2>
-      <div class="restaurant__list" id="restaurants"></div>
-      <div class="lds-facebook"><div></div><div></div><div></div></div>
+      <div class="restaurant__list" id="restaurants">
+        ${createSkeletonRestaurantTemplate(20)}
+      </div>
     `;
   },
 
   async afterRender() {
     const restaurants = await RestaurantSource.activeRestaurants();
     const restaurantsContainer = document.querySelector('#restaurants');
+    restaurantsContainer.innerHTML = '';
     restaurants.forEach((restaurant) => {
       restaurantsContainer.innerHTML += createRestaurantItemTemplate(restaurant);
     });
-
-    const loader = document.querySelector('.lds-facebook');
-    loader.style.display = 'none';
   },
 };
 
